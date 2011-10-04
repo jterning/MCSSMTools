@@ -1,0 +1,58 @@
+# C compiler
+CC="gcc" 
+
+# Flags for C compiler
+CFLAGS="-fsigned-char"
+
+# Disposition of header files for X11 
+HX11=-I/usr/X11R6/include
+
+# Disposition of lX11  
+LX11="-L/usr/X11R6/lib -lX11"
+
+# Library which supports runtime  loading of shared libraries  
+lDL="-ldl"
+
+# Addition flags needed to compile objet files for shared libraries
+CFLAGSD="-dynamic"
+
+# C Flag which forces compilation of  shared library 
+SHARED="-dynamiclib"
+
+# FLAG to define  shared_object_name for shared library
+SONAME=
+
+# Flag which  tells which tools for lock will bw used. Possible values  
+# LOCK=-DLOCKF ,  LOCK=-DFLOCK, LOCK= . In the last  case the working 
+# disck space is not locked against second CalcHEP launching.   
+# Cygwin/SunOS accept  only  flock/fockf .
+LOCK=-DFCNTL
+
+#Suffix for shared libraies
+SO=so
+
+
+# Flag which defines type of numbers used in symbolic calculations 
+# it could be -DNUM_DOUBLE ,  -DNUM_LONG_LONG  -DNUM_LONG
+SNUM=-DNUM_LONG_LONG
+
+# Fortran compiler
+FC="gfortran"
+
+# Flags for Fortran compiler
+FFLAGS="-Wall"
+
+# Special Fortran libraries one has to pass to C linker
+lFort=""
+
+# C++ compiler
+CXX=""
+
+# RANLIB 
+RANLIB="ranlib -c"
+
+# MAKE 
+MAKE=make        
+
+export CC CFLAGS CFLAGSD lDL LX11 SHARED SONAME SO FC FFLAGS RANLIB CXX lFort MAKE
+

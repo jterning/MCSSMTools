@@ -1,0 +1,28 @@
+
+
+ if(test -r n_calchep) then 
+    rm n_calchep
+ fi
+
+ $CALCHEP/nCompil
+ if(test $? -ne 0)then 
+    echo Error in compilation
+    echo Press the Enter key to continue
+    read qq 
+    exit 1 
+ fi
+
+ if(test -r n_comphep) then
+    rm n_comphep
+    echo WARNING: old n_comphep is deleted
+ fi
+ $CALCHEP/ld_n $* 
+ if(test $? -ne 0) then  
+    echo Error in  linking, n_comphep is not created.
+    echo Press the Enter key to continue
+    read qq 
+    exit 1
+ else
+   echo OK n_comphep is created 
+ fi 
+

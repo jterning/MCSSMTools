@@ -1,0 +1,133 @@
+!   We use 'gmake' options in our Makefiles. If you do not have 'gmake' 
+!   then more likely your  'make'  is identical to 'gmake'.
+
+
+I. General  installation.
+   Launch
+       [g]make 
+
+   It should generate files with compilers flags
+       CalcHEP_src/FlagsForMake
+       CalcHEP_src/FlagsForSh
+   
+   and  compile  
+       CalcHEP_src/bin/s_calchep 
+       sources/micromegas.a
+
+   Possible problems are discussed in Section VII below. 
+
+   micromegas_2.1 was tested for  Linux, OSF1, SunOS, Darwin, 
+   Cygwin.
+ 
+II. To work with MSSN, MSSM, CPVMSSM, LHM, RHNM  models
+    go to the corresponding directory. 
+
+    To generate executable use
+     [g]make main=<source file>
+                                                          
+    <source file> is expected to be a C  (.c) file, C++ (.cpp) one,
+     or a Fortran (.F) file.
+
+    The list of functions you can use in  your programs is described in 
+    hep-ph/0405253, hep-ph/0607059 and  arXiv:0803.2360[hep-ph].
+
+ *** Cygwin user has to launch executable with 
+    ../cgwRun <exe with parameters>
+
+III. Each model directory  contains 2 sample  files: 
+      main.c 
+      main.F
+      a sample for C++  can be obtained by 'cp main.c main.cpp'
+ 
+     main.c and main.F  contain  several independent modules 
+     which can be switched ON  by '#define' preprocessor instructions
+     in the top of the file.
+
+     The modules are:
+
+   a) MASSES_INFO
+       displays mass spectrum for odd particles (super partners) and 
+       Higgs particles;
+   b) CONSTRAINTS
+       checks experimental  constraints;  
+   c) OMEGA
+       computes the relic density;
+   d) INDIRECT_DETECTION
+       calculates  WIMP annihilation spectra and integrate
+       over halo profile;
+   e) RESET_FORMFACTORS
+       resets parameters of nucleon form factors, DM velocity 
+       distribution, and nucleus Fermi density;
+   f) WIMP_NUCLEON
+       calculates WIMP-nucleon elastic scattering amplitudes
+   g) WIMP_NUCLEUS
+       calculates the number of events for 1day&1kg  of detector material and 
+       recoil energy distribution for WINP-nuclei reaction;
+   h) CROSS_SECTIONS
+       calculates different  widths and cross sections
+
+IV. Each model directory contains a subdirectory  'calchep/' intended 
+    for calculation of different cross sections and decay widths 
+    in  interactive sessions  for SM and other models.  
+        
+V.To implement new model.  Launch 
+    ./newProject  <project name>
+      
+ Then directory <project name> will be created with all needed subdirectories 
+ and  sample  files inside. Further instructions can be found in local 
+ README file. 
+      
+VI. To clean all generated files use 
+   [g]make clean 
+      or  
+   ./clean 
+   launched from micromegas_2.1 directory. In each model directory you 
+   can call 
+     [g]make clean 
+   to remove all generated files in this particular directory.
+
+VII. Compilers and  their Flags
+    Options for compilation are stored in two files FlagsForSh and 
+    FlagsForMake  that should contain identical settings presented 
+    in different formats. These files are located in the CalcHEP_src 
+    directory and initiated by the getFlags command launched from 
+    the  same directory. 
+
+    If FlagsForSh does not exist, getFlags creates it according to the 
+    operation system name returned by the 'uname' Unix command.
+    If FlagsForSh exists, getFlags reads all parameters  from this 
+    file, checks and  modifies them if it needs, and writes down 
+    new FlagsForSh and FlagsForMake. It also informs you in case of 
+    problem.
+   
+    In case of problem the user can change compiler flags 
+    written in  FlagsForSh and launch getFlags  again until
+    it will finish without error code and FagsForMake will be generated.
+    The meaning of all flags is explained in the FlagsForSh file. 
+
+VIII. Citation and information   
+
+1. %\cite{Belanger:2008sj}
+   \bibitem{Belanger:2008sj}
+  G.~Belanger, F.~Boudjema, A.~Pukhov and A.~Semenov,
+  %`Dark matter direct detection rate in a generic model with micrOMEGAs2.1,''
+  arXiv:0803.2360 [hep-ph].
+  %%CITATION = ARXIV:0803.2360;%%
+
+2. %\cite{Belanger:2006is}
+\bibitem{Belanger:2006is}
+  G.~Belanger, F.~Boudjema, A.~Pukhov and A.~Semenov,
+  %`micrOMEGAs2.0: A program to calculate the relic density of dark matter  in
+  %a generic model,''
+  Comput.\ Phys.\ Commun.\  {\bf 176} (2007) 367
+  [arXiv:hep-ph/0607059].
+
+    Other citations needed for specific models are listed in 
+    model/README files. 
+
+IX.   WEB address:
+       http://lappweb.in2p3.fr/lapth/micromegas
+
+X. Help 
+  Mail to    micro.omegas@lapp.in2p3.fr 
+

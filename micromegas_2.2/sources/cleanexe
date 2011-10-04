@@ -1,0 +1,8 @@
+:
+
+for FILE in * 
+do  
+  if(test -x $FILE -a ! -d $FILE) then 
+     rm $FILE
+  fi
+done

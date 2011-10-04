@@ -1,0 +1,98 @@
+#!/bin/bash
+
+function rmm {
+ for f in $*
+ do
+  if [ -e $f ]
+  then
+   rm -f $f
+  fi
+ done
+}
+
+if [ -z "$1" ]
+then
+	echo "No input file"
+	exit
+fi
+
+if [ ! -e $1 ]
+then
+	echo "File $1 not found"
+	exit
+fi
+
+omg=`awk '/^BLOCK MODSEL/,(/^BLOCK/ && $2!="MODSEL")' $1 | awk '$1==9 {print $2}'`
+dir=`dirname $1`
+fil=`basename $1`
+pre=${fil%inp*}
+suf=${fil#*inp}
+
+
+
+if [ -z $omg ]
+then
+	omg=0
+fi
+
+
+
+
+if [ "$omg" -lt 0 -o "$omg" -gt 4 ]
+then
+	echo "READ ERROR in file $1"
+	echo "-> Swich 9 in BLOCK MODSEL must be between 0 and 4 (default is 0)"
+	echo "   Please add one of the following lines to the BLOCK MODSEL in $1:"
+	echo "   9     0	# No call to micrOMEGAs"
+	echo "   or"
+	echo "   9     1	# Call to micrOMEGAs for relic density only"
+	echo "   or"
+	echo "   9     2	# Call to micrOMEGAs for relic density and dir. det. rate"
+	echo "   or"
+	echo "   9     3	# Call to micrOMEGAs for relic density and indir. det. rate"
+	echo "   or"
+	echo "   9     4	# Call to micrOMEGAs for relic density and both. det. rate"
+	cd $dir
+	rmm ${pre}spectr$suf ${pre}decay$suf ${pre}lhcsig$suf ${pre}omega$suf
+	rmm ${pre}err$suf ${pre}out$suf
+	exit
+fi
+
+
+
+
+prog='./nmhdecay' 
+echo -n "Running NMHDECAY"
+echo " for 1 point" 
+echo "with input file $1"
+
+
+if [ "$omg" -ne 0 ]
+then
+	   echo "DM relic density will be computed by micrOMEGAs"
+	   echo "Output files ${pre}spectr$suf, ${pre}decay$suf, ${pre}lhcsig$suf and ${pre}omega$suf"
+else
+	   echo "Output files ${pre}spectr$suf, ${pre}decay$suf and ${pre}lhcsig$suf"
+fi
+echo "will be written in directory $dir"
+cp $1 main/inp
+cd main
+${prog}
+if [ $? -eq 0 ]
+then
+	   rm inp
+	   mv spectr ../$dir/${pre}spectr$suf
+	   mv decay ../$dir/${pre}decay$suf
+	   mv lhcsig ../$dir/${pre}lhcsig$suf
+	   if [ "$omg" -ne 0 ]
+	   then
+		   mv omega ../$dir/${pre}omega$suf
+	   else
+		   rmm omega ../$dir/${pre}omega$suf
+	   fi
+	   echo "OK!"
+else
+	   rmm inp spectr decay lhcsig omega
+	   cd ../$dir/
+	   rmm ${pre}spectr$suf ${pre}decay$suf ${pre}lhcsig$suf ${pre}omega$suf
+fi

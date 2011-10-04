@@ -1,0 +1,6 @@
+cLib=$CALCHEP/lib
+
+$CC $CFLAGS  -o n_calchep $cLib/n_calchep.o $cLib/num_c.a  \
+$cLib/serv.a proclib_*.a   $EXTLIB $cLib/dummy.a \
+$LX11 -lm
+

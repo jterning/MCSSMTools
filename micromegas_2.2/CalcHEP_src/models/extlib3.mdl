@@ -1,0 +1,5 @@
+Standard Model
+Libraries
+External libraries  and citation                                      <|
+%   -L/cern/pro/lib -lpdflib804 -lmathlib -lpacklib $lFort
+========================================================================

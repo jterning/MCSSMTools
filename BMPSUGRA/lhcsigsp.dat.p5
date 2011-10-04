@@ -1,0 +1,88 @@
+# HIGGS SIGNIFICANCES AT LHC WITH 30 fb-1
+# Info about spectrum calculator
+BLOCK SPINFO   # Program information
+     1   NMSSMTools # Spectrum calculator
+     2   3.0.0      # Version number
+#
+# H1
+  0.00E+00   # bbH1 -> bbtautau
+  0.00E+00   # gg -> H1 -> gamma gamma
+  0.00E+00   # gg -> H1 -> ZZ -> 4 leptons
+  0.00E+00   # gg -> H1 -> WW -> 2 leptons 2 neutrinos
+  0.00E+00   # WW -> H1 -> tautau
+  0.00E+00   # WW -> H1 -> WW
+  0.00E+00   # WW -> H1 -> gamma gamma
+#
+# H2
+  0.75E-02   # bbH2 -> bbtautau
+  0.68E+00   # gg -> H2 -> gamma gamma
+  0.45E+00   # gg -> H2 -> ZZ -> 4 leptons
+  0.00E+00   # gg -> H2 -> WW -> 2 leptons 2 neutrinos
+  0.33E+01   # WW -> H2 -> tautau
+  0.00E+00   # WW -> H2 -> WW
+  0.44E+00   # WW -> H2 -> gamma gamma
+#
+# H3
+  0.52E+00   # bbH3 -> bbtautau
+  0.00E+00   # gg -> H3 -> gamma gamma
+  0.58E+00   # gg -> H3 -> ZZ -> 4 leptons
+  0.68E+00   # gg -> H3 -> WW -> 2 leptons 2 neutrinos
+  0.00E+00   # WW -> H3 -> tautau
+  0.62E-01   # WW -> H3 -> WW
+  0.00E+00   # WW -> H3 -> gamma gamma
+#
+# A1
+  0.75E-02   # bbA1 -> bbtautau
+  0.33E-05   # gg -> A1 -> gamma gamma
+#
+# A2
+  0.52E+00   # bbA2 -> bbtautau
+  0.00E+00   # gg -> A2 -> gamma gamma
+
+
+# HIGGS SIGNIFICANCES AT LHC with 300 fb-1
+#
+# H1
+  0.00E+00   # H1 -> gamma gamma
+  0.13E+01   # H1 -> gamma gamma lepton
+  0.39E+01   # ttH1 -> bb + X
+  0.00E+00   # bbH1 -> bbtautau
+  0.00E+00   # gg -> H1 -> ZZ -> 4 leptons
+  0.00E+00   # gg -> H1 -> WW -> 2 leptons 2 neutrinos
+  0.00E+00   # WW -> H1 -> tautau
+  0.00E+00   # WW -> H1 -> WW
+  0.00E+00   # WW -> H1 -> invisible
+#
+# H2
+  0.17E+01   # H2 -> gamma gamma
+  0.49E+01   # H2 -> gamma gamma lepton
+  0.93E+01   # ttH2 -> bb + X
+  0.27E+00   # bbH2 -> bbtautau
+  0.11E+01   # gg -> H2 -> ZZ -> 4 leptons
+  0.00E+00   # gg -> H2 -> WW -> 2 leptons 2 neutrinos
+  0.10E+02   # WW -> H2 -> tautau
+  0.17E+01   # WW -> H2 -> WW
+  0.00E+00   # WW -> H2 -> invisible
+#
+# H3
+  0.00E+00   # H3 -> gamma gamma
+  0.00E+00   # H3 -> gamma gamma lepton
+  0.00E+00   # ttH3 -> bb + X
+  0.35E+01   # bbH3 -> bbtautau
+  0.22E+01   # gg -> H3 -> ZZ -> 4 leptons
+  0.44E+01   # gg -> H3 -> WW -> 2 leptons 2 neutrinos
+  0.00E+00   # WW -> H3 -> tautau
+  0.33E+00   # WW -> H3 -> WW
+  0.18E-01   # WW -> H3 -> invisible
+#
+# A1
+  0.90E-05   # A1 -> gamma gamma
+  0.21E-05   # A1 -> gamma gamma lepton
+  0.93E+01   # ttA1 -> bb + X
+  0.27E+00   # bbA1 -> bbtautau
+#
+# A2
+  0.00E+00   # A2 -> gamma gamma
+  0.00E+00   # A2 -> gamma gamma lepton
+  0.00E+00   # ttA2 -> bb + X
+  0.35E+01   # bbA2 -> bbtautau

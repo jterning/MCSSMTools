@@ -1,0 +1,18 @@
+:
+  if(test -x "`which gmake`") then
+     MAKE=gmake
+  else
+     MAKE=make
+  fi
+  export MAKE
+
+  for Dir in * 
+  do 
+    if(test -d $Dir ) then 
+       $MAKE -C $Dir clean
+    fi
+  done
+
+
+  
+  exit 0

@@ -1,0 +1,38 @@
+# RELIC DENSITY CALCULATED BY MICROMEGAS
+#
+BLOCK RDINFO   # Program information
+     1   MicrOmegas # Dark matter package
+     2   3.0.0      # Version number
+     4   # Unreliable Higgs widths in micrOMEGAs
+#
+BLOCK RELDEN
+  0.12584451E+00   # omega h^2
+  0.26359504E+02   # Xf
+#
+BLOCK LSP
+  0.20831461E+03   # LSP mass
+ ~o1 = 0.999*bino-0.009*wino+0.050*higgsino1-0.016*higgsino2+0.003*singlino
+#
+BLOCK CHANNELS
+34.7% ~o1 ~l1 -> A l
+22.9% ~l1 ~l1 -> l l
+10.7% ~o1 ~l1 -> Z l
+ 7.1% ~l1 ~L1 -> A A
+ 6.0% ~o1 ~o1 -> l L
+ 3.6% ~o1 ~o1 -> m M
+ 3.6% ~o1 ~o1 -> e E
+ 3.4% ~l1 ~L1 -> A Z
+ 2.3% ~o1 ~l1 -> W- nl
+ 1.7% ~o1 ~o1 -> t T
+ 1.0% ~o1 ~l1 -> l h1
+ 0.5% ~l1 ~L1 -> Z Z
+ 0.4% ~l1 ~L1 -> t T
+ 0.4% ~l1 ~L1 -> l L
+ 0.3% ~o1 ~o1 -> h1 ha
+ 0.1% ~l1 ~L1 -> c C
+ 0.1% ~l1 ~L1 -> u U
+ 0.1% ~o1 ~o1 -> nl Nl
+ 0.1% ~o1 ~o1 -> nm Nm
+ 0.1% ~o1 ~o1 -> ne Ne
+ 0.1% ~l1 ~L1 -> m M
+ 0.1% ~l1 ~L1 -> e E

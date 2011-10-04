@@ -1,0 +1,98 @@
+
+static int calcFunc_2(void)
+{ int i,recalc,err;
+  static double*va_mem=NULL;
+
+  if(va_mem==NULL) recalc=1; else
+  {  recalc=0;
+     for(i=1;i<=nvar_2;i++)
+     if(va_mem[i]!=va_2[i]) {recalc=1; break;}
+  }
+
+  if(recalc)
+  { err=calcFunc_stat();
+    if(err) return err;
+
+    if(!va_mem) va_mem=(double*)malloc(sizeof(double)*(nvar_2+1));
+
+    for(i=1;i<=nvar_2;i++)  va_mem[i]=va_2[i];
+    for(i=1;i<=nprc_2;i++)  calcall[i]=1;
+    return -1;
+  }
+  return 0;
+}
+
+
+static double sqme_2(int nsub, double * momenta,int * err)
+{  double r;
+   if(nsub>nprc_2 || nsub<=0 ) return 0;
+   sprod_(nin_2+nout_2,momenta); 
+   CalcConst=calcall[nsub];
+   r=darr[nsub-1](momenta,err);
+   calcall[nsub]=0;
+   return r;
+}
+
+
+double width2_ext(char *name,long N)
+{
+  double pvect[12];
+  double width=0.;
+  int n,i,j;
+  int first=1;
+  int err;
+  static int * link=NULL; 
+  static double *Q=NULL, *GG=NULL, *SC=NULL;
+  if(!link)
+  { link=malloc(sizeof(int)*(nvar_2+1));
+    for(i=1; i<=nvar_2; i++)
+    { 
+      link[i]=0;
+      if(strcmp(varName_2[i],"Q")==0) Q=va_2+i;
+      if(strcmp(varName_2[i],"GG")==0) GG=va_2+i; 
+      for(j=1;j<=nvar_ext;j++)
+      if(strcmp(varName_2[i],varName_ext[j])==0){link[i]=j; break;}    
+    }
+    if(GG)for(i=1; i<=nvar_2+nfunc_2; i++) if(strcmp(varName_2[i],"SC")==0) SC=va_2+i; 
+  }
+
+  for(i=1;i<=nvar_2;i++) if(link[i])va_2[i]=va_ext[link[i]];  
+else printf("%s - not found\n", varName_2[i]);
+  err=calcFunc_2();
+  for(n=1;n<=nprc_2;n++)
+  { 
+    double m1,m2,m3; 
+    long n1,n2,n3;
+    char *p1,*p2,*p3; 
+
+    if(strcmp(name,p1=pinf_2(n,1,&m1,&n1))==0)
+    {  
+      if(first)
+      { if(Q)
+        {*Q=m1;
+         err=calcFunc_2();
+         pinf_2(n,1,&m1,&n1);
+        }
+        if(GG) {if(SC) *GG=*SC; /*else *GG=sqrt(4*M_PI*alpha_2(m1));*/}
+        first=0;
+      }
+      p2=pinf_2(n,2,&m2,&n2); p3= pinf_2(n,3,&m3,&n3);
+      if(m1 >m2 + m3)
+      {   int i,err_code=0; 
+          double md=m2-m3;
+          double ms=m2+m3;
+          double pRestOut=sqrt((m1*m1 - ms*ms)*(m1*m1-md*md))/(2*m1);
+          double totcoef= pRestOut/(8. * M_PI * m1*m1);
+           
+          for(i=1;i<12;i++) pvect[i]=0;
+          pvect[0]=m1;
+          pvect[7]=pRestOut;
+          pvect[4]=sqrt(pRestOut*pRestOut+m2*m2);
+          pvect[11]=-pRestOut;
+          pvect[8]=sqrt(pRestOut*pRestOut+m3*m3);
+          width += totcoef * sqme_2(n,pvect,&err_code);
+      }
+    }
+  }
+  return width;
+}

@@ -1,0 +1,6 @@
+# A way to launch  executable in Cygwin
+# One has to modify PATH to help the executable
+# finding shared libraries.
+
+PATH=$PATH:../CalcHEP_src:lib
+./$*

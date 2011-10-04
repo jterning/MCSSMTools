@@ -1,0 +1,16 @@
+2 9 76  External libraries and citations
+
+  All lines of this table are concatenated and  passed to linker to 
+collect n_calchep.  It need to pass to linker specific model functions
+used in the list of constraints. 
+  Other possibility is the including CERN PDFLIB parton distributions. 
+In this case add the record 
+ -L/cern/pro/lib -lpdflib804 -lmathlib -lpacklib
+which  has to be corrected  according to  CERNLIB  disposition on your
+computer.  CERNLIB contains is written in Fortran, thus one has to add 
+to the link record system Fortran libraries like g2c. In general CalcHEP 
+adds them automatically if they were found  at installation.
+
+  Only parts of lines before the comment symbol % are passed to linker.
+ We propose to use the commented fields  to pass information about papers
+where the model was described and that should be used for citation.

@@ -1,0 +1,45 @@
+# Input file for MCSSMTools
+# Based on SUSY LES HOUCHES ACCORD II
+
+BLOCK MODSEL
+	9	0		# Call micrOmegas (default 0=no, 1=relic density only)
+	13  1   	# 1: Sparticle decays via NMSDECAY
+BLOCK SMINPUTS
+	1	127.92D0	# ALPHA_EM^-1(MZ)
+	2	1.16639D-5	# GF
+	3	.1172D0		# ALPHA_S(MZ)
+	4	91.187D0	# MZ
+	5	4.214D0		# MB(MB) (running mass)
+	6	171.4D0		# MTOP (pole mass)
+	7	1.777D0		# MTAU
+
+BLOCK MINPAR
+	0	600.D0		# MSUSY (If =/= SQRT(2*MQ1+MU1+MD1)/2)
+	3	1.1D0		# TANB
+
+BLOCK EXTPAR
+	1	600.D0		# M1 (If =/= M2/2)
+	2	500.D0		# M2
+	3	20000.D0	# M3 (If =/= 3*M2)
+	11	10.D0	    # AU3
+	12	10.D0		# AD3
+	13	10000.D0  	# AE3
+	16	0.D0	        # AE2 = AE1 (If =/= AE3)
+	33	10000.D0	# ML3
+	32	10000.D0	# ML2 = ML1 (If =/= ML3)
+	36	10000.D0	# ME3
+	35	10000.D0	# ME2 = ME1 (If =/= ME3)
+	43	500.D0		# MQ3
+	42	10000.D0  	# MQ2 = MQ1 (If =/= MQ3)
+	46	50.D0		# MU3
+	45	10000.D0  	# MU2 = MU1 (If =/= MU3)
+	49	10000.D0  	# MD3
+	48	10000.D0  	# MD2 = MD1 (If =/= MD3)
+	61	1.05D0		# LAMBDA
+	62	1.0D-9		# KAPPA
+	63	800.D0		# ALAMBDA (If MA is not an input)
+	64	0.D0		# AKAPPA
+	200	-8.D6		# Tad 
+	201	80.D0		# f 
+	202	160.D0		# mSing 
+	203	600.D0		# majS 
