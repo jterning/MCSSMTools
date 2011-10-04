@@ -1,6 +1,5 @@
 This program calculates the spectrum of the Minimal Composite Supersymmetric Standard Model.
-It was hacked by Csaba Csaki and John Terning.
-This code is adapted from NMSSMTools by
+It was hacked by Csaba Csaki and John Terning, based on the code NMSSMTools by
 Ulrich Ellwanger, John F. Gunion, Cyril Hugonie, C.-C. Jean-Louis, Debottam Das, and Ana M. Teixeira
 for more information on NMSSMTools see
 http://www.th.u-psud.fr/NMHDECAY/nmssmtools.html
