@@ -462,7 +462,7 @@
        IF(IX.EQ.2) PAR(21)=VAL
        IF(IX.EQ.3) PAR(22)=VAL
        IF(IX.EQ.11) PAR(12)=VAL
-       IF(IX.EQ.12) PAR(13)=VAL
+	   IF(IX.EQ.12) PAR(13)=VAL
        IF(IX.EQ.13) PAR(14)=VAL
        IF(IX.EQ.16) PAR(25)=VAL
        IF(IX.EQ.32) PAR(18)=VAL**2

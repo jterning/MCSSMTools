@@ -293,6 +293,7 @@
 
 *   Guess parameters at Q2
 
+	  write(0,*)"*   Guess parameters at Q2"
       IF(Q2FIX.EQ.0)THEN
        Q2=MAX(M0**2+4d0*M12**2,Q2MIN)
       ENDIF

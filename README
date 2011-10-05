@@ -128,6 +128,7 @@ I5=1: NMSDECAY is called, which computes sparticle 2-body and 3-body
         "flagloop" (loop decays)
      can be switched off; otherwise a call of NMSDECAY takes about 2-3 seconds
      per point in parameter space.
+     In MCSSMTools flagqcd is switched off.
      In the versions nmhdecay.f and nmspec.f, the sparticle widths and BR's are
      appended to the output file PREFIXdecaySUFFIX in SLHA2 format. If scans are
      performed, the user can use the arguments of the COMMON statements in the

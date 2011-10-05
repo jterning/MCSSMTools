@@ -408,7 +408,7 @@ c ------------------------ BEGIN CODE ----------------------------
          SQR2= DSQRT(2.D0)
 C ---- FLAGS ------------ put "0" to invalidate 
          flagmulti=1.D0      ! 3-body decays
-         flagqcd=1.D0        ! QCD corrections to 2-body decays
+         flagqcd=0.D0        ! QCD corrections to 2-body decays
          flagloop= 1.D0      ! loop decays
 c --- 3-body BRs are shown only if larger than multilim:
          multilim=0.01d0

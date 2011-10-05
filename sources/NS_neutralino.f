@@ -633,6 +633,7 @@ c  chi0_1/chi0_2/chi0_3/chi0_4/chi0_5 --> sbottom2 + bottom
          endif
       end do
 c -- QCD corrections --
+*	  write(0,*)"flagqcd",flagqcd
       if(flagqcd.eq.1.D0) then
       do i=1,5,1
          if(amneut(i).ge.(asb2+amb)) then
@@ -685,6 +686,7 @@ c -------------------------------------------------------------------- c
      .           qcdneutsb1(i)+qcdneutsb2(i)+2.D0*qcdneutsupl(i)+2.D0*
      .           qcdneutsupr(i)+2.D0*qcdneutsdownl(i)+2.D0*
      .           qcdneutsdownr(i)) + neuttot2lo(i)
+*            write(0,*)"neuttot2nlo(i) ",i,neuttot2lo(i),neuttot2nlo(i)
          enddo
 
          do i=1,5
@@ -761,7 +763,7 @@ c ---------------------------- total widths -------------------------- c
 c--------------------------------------------------------------------- c
       do i=1,5,1
        neuttot(i) = neuttot2(i)+neuttotmulti(i)+neuttotrad(i)
-       
+*       write(0,*)"Neuttot ",i,neuttot2(i),neuttotmulti(i),neuttotrad(i)
       end do
 c--------------------------------------------------------------------- c
 c ------ neutralino branching ratios for 2-body decays --------------- c
@@ -803,6 +805,7 @@ c--------------------------------------------------------------------- c
          enddo
          do j=1,5
             brneutzneut(i,j)  = neutzneut(i,j)/neuttot(i)
+*            write(0,*)"Neut BR ",i,j,neutzneut(i,j),neuttot(i)
             do k=1,3
                brneutHneut(i,j,k) = neutHneut(i,j,k)/neuttot(i)
             enddo

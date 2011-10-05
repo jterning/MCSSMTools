@@ -258,6 +258,8 @@
 *   Conversion to DR_bar:
       HTQ=HTQ*(1d0-ALSQ/(3d0*PI)+g2q*COEF*3d0/8d0)
       HBQ=HBQ*(1d0-ALSQ/(3d0*PI)+g2q*COEF*3d0/8d0)
+      HTQ=HT
+
       
 *   Running Top and Bottom Quark Masses
       MTOPQ=HTQ*H1Q

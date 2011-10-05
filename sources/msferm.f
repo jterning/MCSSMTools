@@ -71,6 +71,38 @@
       COMMON/QPAR/LQ,KQ,ALQ,AKQ,MUQ,NUQ
       COMMON/SUSYMH/MH1S,MH2S,MSS
 
+*      PAR(1) = lambda
+*      PAR(2) = kappa
+*      PAR(3) = tan(beta)
+*      PAR(4) = mu (effective mu term = lambda*s)
+*      PAR(5) = Alambda (if MA is not an input)
+*      PAR(6) = Akappa
+*      PAR(7) = mQ3**2
+*      PAR(8) = mU3**2
+*      PAR(9) = mD3**2
+*      PAR(10) = mL3**2
+*      PAR(11) = mE3**2
+*      PAR(12) = AU3
+*      PAR(13) = AD3
+*      PAR(14) = AE3
+*      PAR(15) = mQ2**2
+*      PAR(16) = mU2**2
+*      PAR(17) = mD2**2
+*      PAR(18) = mL2**2
+*      PAR(19) = mE2**2
+*      PAR(20) = M1
+*      PAR(21) = M2
+*      PAR(22) = M3
+*      PAR(23) = MA (diagonal doublet CP-odd mass matrix element)
+*      PAR(24) = MP (diagonal singlet CP-odd mass matrix element)
+*      PAR(25) = AE2
+*
+*      Tad  = linear soft breaking term
+*      f	= linear superpotential term for the singlet S
+*      mSing2  = soft breaking singlet mass
+*      majS	= Majorana singlet mass
+
+
       PI=4d0*DATAN(1d0)
       COEF=1d0/(16d0*PI**2)
 
@@ -93,6 +125,7 @@
        MH2S= -LQ**2*H2Q**2 - MUQ**2 + MUQ*B*TANBQ
      .      + GQ/2d0*(H1Q**2-H2Q**2)
       ENDIF
+
 
       M1=PAR(20)
       M2=PAR(21)
@@ -196,14 +229,20 @@
 
       IF(RMST1.LE.0d0)THEN
         WRITE(0,*)"MSF^2 < 0"
-        WRITE(0,*)"RMST1=",RMST1
-        WRITE(0,*)mstL
-        WRITE(0,*)mstR
-        WRITE(0,*)Wt
         !WRITE(0,*)""
        IFAIL=8
        RETURN
       ENDIF
+      
+    	WRITE(0,*)"mtq,MQ3P,MU3P,ATP,Xt"
+        WRITE(0,*)mtq,MQ3P,MU3P,ATP,Xt
+
+    	WRITE(0,*)"MQ3P,MU3P,ATP"
+        WRITE(0,*)PAR(7),PAR(8),PAR(12)
+
+        WRITE(0,*)"Stop mass,mstL,mstR,Wt"
+        WRITE(0,*)DSQRT(RMST1),mstL,mstR,Wt
+
 
       nen= DSQRT((mstL-RMST1)**2 + (Xt*mtq)**2)
       IF(nen.EQ.0d0)THEN

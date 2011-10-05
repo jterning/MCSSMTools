@@ -191,7 +191,8 @@
       PAR(2)=Y(5)
 
 * SOFT TERMS AT THE SUSY SCALE
-
+		write(0,*)"* SOFT TERMS AT THE SUSY SCALE"
+		
       PAR(5)=Y(12)
       PAR(6)=Y(13)
       PAR(7)=Y(20)
