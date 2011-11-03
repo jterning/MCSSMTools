@@ -220,31 +220,35 @@
       ABP=AB
 *   Running stop masses squared and mixings
 
-      mstL= MQ3P + mtq**2 + (gQ/2d0-g1Q/3d0)*(h2q**2-h1q**2)
-      mstR= MU3P + mtq**2 + g1Q/3d0*(h2q**2-h1q**2)
+      mstL= MQ3P + MT**2 + (gQ/2d0-g1Q/3d0)*(h2q**2-h1q**2)
+      mstR= MU3P + MT**2 + g1Q/3d0*(h2q**2-h1q**2)
       Xt= ATP-muq/tanbq
-      Wt= DSQRT( (mstL-mstR)**2 + 4d0*(Xt*mtq)**2)
+      Wt= DSQRT( (mstL-mstR)**2 + 4d0*(Xt*MT)**2)
       RMST1= 0.5d0*(mstL+mstR-Wt)
       RMST2= 0.5d0*(mstL+mstR+Wt)
 
+
+      WRITE(0,*)"Stop masses"
+      WRITE(0,*)DSQRT(RMST1),"  ",DSQRT(RMST2)
+
       IF(RMST1.LE.0d0)THEN
         WRITE(0,*)"MSF^2 < 0"
-        !WRITE(0,*)""
+        
+    	WRITE(0,*)"MQ3P,MU3P,ATP"
+        WRITE(0,*)PAR(7),PAR(8),PAR(12)
+
+    	WRITE(0,*)"MT,Xt,muq"
+        WRITE(0,*)MT,Xt,muq
+
+        WRITE(0,*)"Stop mass,mstL,mstR,Wt"
+        WRITE(0,*)DSQRT(RMST1),mstL,mstR,Wt
        IFAIL=8
        RETURN
       ENDIF
       
-    	WRITE(0,*)"mtq,MQ3P,MU3P,ATP,Xt"
-        WRITE(0,*)mtq,MQ3P,MU3P,ATP,Xt
-
-    	WRITE(0,*)"MQ3P,MU3P,ATP"
-        WRITE(0,*)PAR(7),PAR(8),PAR(12)
-
-        WRITE(0,*)"Stop mass,mstL,mstR,Wt"
-        WRITE(0,*)DSQRT(RMST1),mstL,mstR,Wt
 
 
-      nen= DSQRT((mstL-RMST1)**2 + (Xt*mtq)**2)
+      nen= DSQRT((mstL-RMST1)**2 + (Xt*MT)**2)
       IF(nen.EQ.0d0)THEN
        IF(mstL.LE.mstR)THEN
         CST= 1d0
@@ -252,7 +256,7 @@
         CST= 0d0
        ENDIF
       ELSE
-       CST= -mtq*Xt/nen
+       CST= -MT*Xt/nen
       ENDIF
       S2T=2d0*CST*DSQRT(1d0-CST**2)
 
@@ -289,8 +293,8 @@
 
       fac=ALSQ/(3d0*PI)
 
-      MST1=RMST1-fac*DMSQUARK(1,RMST1,RMST2,S2T,mtq,MGL,QSTSB)
-      MST2=RMST2-fac*DMSQUARK(2,RMST1,RMST2,S2T,mtq,MGL,QSTSB)
+      MST1=RMST1-fac*DMSQUARK(1,RMST1,RMST2,S2T,MT,MGL,QSTSB)
+      MST2=RMST2-fac*DMSQUARK(2,RMST1,RMST2,S2T,MT,MGL,QSTSB)
       MSB1=RMSB1-fac*DMSQUARK(1,RMSB1,RMSB2,S2B,mbq,MGL,QSTSB)
       MSB2=RMSB2-fac*DMSQUARK(2,RMSB1,RMSB2,S2B,mbq,MGL,QSTSB)
 

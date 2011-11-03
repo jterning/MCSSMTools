@@ -240,7 +240,7 @@
 *   Reading of the input parameters
 
       CALL INPUT(PAR,NPAR)
-*  	  write(0,*) "f=",f
+      
 *   Initialization of PROB and IFAIL
 
       DO I=1,NPROB
@@ -361,7 +361,8 @@
       DOUBLE PRECISION MS,MC,MB,MBP,MT,MTAU,MMUON,MZ,MW
       DOUBLE PRECISION VUS,VCB,VUB,Q2,Q2MIN
       DOUBLE PRECISION XIF,XIS,MUP,MSP,M3H
-      DOUBLE PRECISION Tad,f,mSing2,majS
+      DOUBLE PRECISION Tad,f,mSing2,majS,tanb,cb,sb
+      DOUBLE PRECISION c2b,sin2b,At,yy,vv,v,mHu,mHd
       
       COMMON/GAUGE/ALSMZ,ALEMMZ,GF,g1,g2,S2TW
       COMMON/SMSPEC/MS,MC,MB,MBP,MT,MTAU,MMUON,MZ,MW
@@ -374,6 +375,14 @@
       COMMON/PFLAG/PFLAG
       COMMON/NMSFLAG/NMSFLAG,NMSCAN
       COMMON/POTENTIAL/Tad,f,mSing2,majS
+      
+*    g1,g2  and sin(theta)^2 in the on-shell scheme in terms of
+*    GF, MZ(pole) and MW(pole)
+
+      g2=4d0*DSQRT(2d0)*GF*MW**2
+      g1=4d0*DSQRT(2d0)*GF*(MZ**2-MW**2)
+      S2TW=1d0-(MW/MZ)**2
+
       
 *   INITIALIZATION OF THE SUSY PARAMETERS
       DO I=1,NPAR
@@ -453,15 +462,24 @@
       ELSEIF(CHBLCK(1:6).EQ.'MINPAR')THEN
        READ(CHINL,*,ERR=999) IX,VAL
        IF(IX.EQ.0) Q2=VAL**2
-       IF(IX.EQ.3) PAR(3)=VAL
-
+       IF(IX.EQ.3) THEN 
+          PAR(3)=VAL
+          tanb=VAL
+          cb=1d0/DSQRT(1d0+tanb**2)
+          sb=tanb*cb
+      	  c2b=cb**2-sb**2
+      	  sin2b= 2d0 *sb *cb
+      	  vv=4 * MZ**2/(g1+g2)
+      	  v=DSQRT(vv)
+          PAR(1)=DSQRT(2.0D0)*MT/(v * sb)
+       ENDIF
+       
 *   READ EXTPAR
       ELSEIF(CHBLCK(1:6).EQ.'EXTPAR')THEN
        READ(CHINL,*,ERR=999) IX,VAL
        IF(IX.EQ.1) PAR(20)=VAL
        IF(IX.EQ.2) PAR(21)=VAL
        IF(IX.EQ.3) PAR(22)=VAL
-       IF(IX.EQ.11) PAR(12)=VAL
        IF(IX.EQ.12) PAR(13)=VAL
        IF(IX.EQ.13) PAR(14)=VAL
        IF(IX.EQ.16) PAR(25)=VAL
@@ -475,11 +493,19 @@
        IF(IX.EQ.46) PAR(8)=VAL**2
        IF(IX.EQ.48) PAR(17)=VAL**2
        IF(IX.EQ.49) PAR(9)=VAL**2
-       IF(IX.EQ.61) PAR(1)=VAL
+
        IF(IX.EQ.62) PAR(2)=VAL
-       IF(IX.EQ.63) PAR(5)=VAL
+
        IF(IX.EQ.64) PAR(6)=VAL
 *       IF(IX.EQ.65) PAR(4)=VAL
+       IF(IX.EQ.70) THEN 
+        PAR(12)=VAL/PAR(1)
+        PAR(5)=VAL/PAR(1)
+*       IF(IX.EQ.11 .OR. IX.EQ.63) THEN
+*         PAR(12)=VAL
+*         PAR(5)=VAL
+       ENDIF
+
        IF(IX.EQ.124) PAR(23)=VAL
 *   READ Tadpole and f
        IF(IX.EQ.200) Tad=VAL
@@ -611,12 +637,26 @@
       CALL ALSINI(ACC)
       CALL BERNINI(NBER)
 
-*    g1,g2  and sin(theta)^2 in the on-shell scheme in terms of
-*    GF, MZ(pole) and MW(pole)
-
-      g2=4d0*DSQRT(2d0)*GF*MW**2
-      g1=4d0*DSQRT(2d0)*GF*(MZ**2-MW**2)
-      S2TW=1d0-(MW/MZ)**2
+*      write(0,*) "v = ",v
+*      write(0,*) "g1^2 = ",g1
+*      write(0,*) "g2^2 = ",g2
+      At=PAR(1)*PAR(5)
+      yy=PAR(1)
+      write(0,*) "yukawa = ",PAR(1)
+      mHu=DSQRT((-4*f**2*yy**2)/tanb + c2b*(2*MZ**2 - vv*yy**2) + 
+     -  (8*At*sin2b*Tad*vv*yy**2)/(2*mSing2 + vv*yy**2)**2 - 
+     -  (8*At*Tad)/(tanb*(2*mSing2 + vv*yy**2)) + 
+     -  (2*At**2*cb**2*vv*(4*mSing2+vv*yy**2+c2b*vv*yy**2))/
+     -  (2*mSing2+vv*yy**2)**2+ 
+     -  yy**2*(-vv - (16*Tad**2)/(2*mSing2 + vv*yy**2)**2))/2.0      
+      write(0,*) "mHu = ",mHu
+      mHd=DSQRT(-(((-4*Tad + At*sin2b*vv)**2*yy**2 + 2*cb**2*MZ**2*
+     -  (2*mSing2+vv*yy**2)**2+tanb*(2*mSing2 +vv*yy**2)*(8*At*Tad+ 
+     -  4*f**2*yy**2*(2*mSing2 + vv*yy**2) + 
+     -  sin2b*(-2*At**2*vv-(MZ-v*yy)*(MZ+v*yy)*
+     -  (2*mSing2+vv*yy**2))))/
+     -  (2*mSing2 + vv*yy**2)**2))/2.0
+      write(0,*) "mHd = ",mHd
 
       RETURN
 

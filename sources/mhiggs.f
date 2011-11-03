@@ -84,9 +84,9 @@
       DOUBLE PRECISION At,Tad,f,mSing2,majS,yy,vv,c2b,sin2b
 
       LOGICAL SLmom
-      INTEGER ERRSL,INDEXGB
-      DOUBLE PRECISION SLMSS(3),SLMAA(3),SLOS(3,3),SLOP(3,3)
-      DOUBLE PRECISION PCOMPNEW(2,2),PMASSNEW(2),SLCMASS
+*      INTEGER ERRSL, INDEXGB
+*      DOUBLE PRECISION SLMSS(3),SLMAA(3),SLOS(3,3),SLOP(3,3)
+*      DOUBLE PRECISION PCOMPNEW(2,2),PMASSNEW(2),SLCMASS
       DOUBLE PRECISION mZpole,mWpole,mtpole,mbmb,slmtau,asmz,SLGF
       DOUBLE PRECISION MQ3P,MU3P,MD3P,ATP,ABP
 
@@ -479,6 +479,7 @@
        DO I= 1,3
         SMASS(I)= DSQRT(SMASS(I))
        ENDDO
+       write(0,*)"Higgs mass = ",SMASS(1)
       ENDIF
 
 *   CP-odd Higgs mass matrix including
