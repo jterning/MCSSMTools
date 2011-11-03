@@ -135,8 +135,10 @@ I5=1: NMSDECAY is called, which computes sparticle 2-body and 3-body
      appended to the output file PREFIXdecaySUFFIX in SLHA2 format. If scans are
      performed, the user can use the arguments of the COMMON statements in the
      subroutines OUTPUT in order to define the content of the output file.
+     
 ************************************************
-Sampe input file
+Sample input file:
+
 # Input file for MCSSMTools
 # Based on SUSY LES HOUCHES ACCORD II
 
