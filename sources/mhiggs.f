@@ -215,29 +215,31 @@
 *	  write(0,*)tanbq, DSQRT(vv),DSQRT(mSing2),sin2b, c2b
 
 
-      H(1,1) = (2*mSing2*MZ**2 + At**2*vv + MZ**2*vv*yy**2 +
-     . c2b*(-2*mSing2*MZ**2 + vv*(At**2 - MZ**2*yy**2)) -
-     . (2*(2*At*Tad + f**2*yy**2*(2*mSing2 + vv*yy**2)))/tanbq)/
-     . (4*mSing2 + 2*vv*yy**2)
+      H(1,1) =  (2*mSing2*MZ**2 + At**2*vv + 
+     -    MZ**2*vv*yy**2 + 
+     -    c2b*(-2*mSing2*MZ**2 + 
+     -       vv*(At**2 - MZ**2*yy**2)) + 
+     -    (2*(2*At*Tad + 
+     -         f**2*yy**2*(2*mSing2 + vv*yy**2)))/
+     -     tanbq)/(4*mSing2 + 2*vv*yy**2)
 *      write(0,*)2*mSing2*MZ**2,At**2*vv,MZ**2*vv*yy**2
 *      write(0,*)c2b*(-2*mSing2*MZ**2 + vv*(At**2 - MZ**2*yy**2)) 
 *      write(0,*)4*mSing2 + 2*vv*yy**2
-      H(2,2) = (2*mSing2*MZ**2 + At**2*vv + 
-     . MZ**2*vv*yy**2 + 
-     . c2b*(2*mSing2*MZ**2 + vv*(-At**2 + MZ**2*yy**2)) - 
-     . 2*tanbq*(2*At*Tad + f**2*yy**2*(2*mSing2 + vv*yy**2)))/
-     . (4*mSing2 + 2*vv*yy**2)
-      H(3,3) =mSing2 + (vv*yy**2)/2.d0
-      H(1,2) = (2*At*Tad + 2*f**2*mSing2*yy**2 + 
-     . mSing2*sin2b*vv*yy**2 + 
-     . f**2*vv*yy**4 - cb*sb*
-     . (2*mSing2*MZ**2 + vv*(At**2 + MZ**2*yy**2 - vv*yy**4)))/
-     . (2*mSing2 + vv*yy**2)
-      H(1,3) = (DSQRT(vv)*(-(At*cb) + (sb*yy**2*(-4*Tad + At*vv*sin2b))/
-     . (2*mSing2 + vv*yy**2)))/DSqrt(2.0d0)
-      H(2,3) = (SQRT(2.0)*DSQRT(vv)*(-4*cb*Tad*yy**2 + 
-     . At*sb*(-2*mSing2 + c2b*vv*yy**2)))/
-     .  (4*mSing2 + 2*vv*yy**2)
+      H(2,2) = (At**2*sb**2*vv + 
+     -    cb**2*MZ**2*(2*mSing2 + vv*yy**2) + 
+     -    tanbq*(2*At*Tad + 
+     -       f**2*yy**2*(2*mSing2 + vv*yy**2)))/
+     -  (2*mSing2 + vv*yy**2)
+      H(3,3) =mSing2 + (vv*yy**2)/2.0D0
+      H(1,2) = -((2*At*Tad + 2*f**2*mSing2*yy**2 - 
+     -      mSing2*sin2b*vv*yy**2 + f**2*vv*yy**4 + 
+     -      cb*sb*(2*mSing2*MZ**2 + 
+     -         vv*(At**2 + MZ**2*yy**2 - vv*yy**4)))
+     -  /(2*mSing2 + vv*yy**2))
+      H(1,3) = (DSQRT(vv)*(At*cb - (sb*(4*Tad + At*sin2b*vv)*
+     -         yy**2)/(2*mSing2 + vv*yy**2)))/Sqrt(2.0)
+      H(2,3) = (DSQRT(vv)*(At*sb - (cb*(4*Tad + At*sin2b*vv)*
+     -    yy**2)/(2*mSing2 + vv*yy**2)))/Sqrt(2.0)
       H(2,1) = H(1,2)     
       H(3,1) = H(1,3) 
       H(3,2) = H(2,3) 
@@ -500,11 +502,11 @@
 * CP odd Mass matrix for minimal composite supersymmetric standard model
 *
 
-      A(1,1)= (At**2*sin2b*vv - 
-     -    2*(2*At*Tad + f**2*yy**2*(2*mSing2 + vv*yy**2)))/
+      A(1,1)= (4*At*Tad + At**2*sin2b*vv + 
+     -    2*f**2*yy**2*(2*mSing2 + vv*yy**2))/
      -  (sin2b*(2*mSing2 + vv*yy**2))
       A(2,2)=mSing2 + (vv*yy**2)/2.0
-      A(1,2)= (At*DSQRT(vv))/DSqrt(2.0d0)
+      A(1,2)= -(At*DSQRT(vv))/DSqrt(2.0d0)
      
      
 *   Diagonalization
@@ -575,10 +577,12 @@
 * Charged Higgs mass for minimal composite supersymmetric standard model
 *
 
-      MHC=-((vv*(-2*At**2 + 2*mSing2*yy**2 + vv*yy**4) + 
-     . (4*(2*At*Tad + f**2*yy**2*(2*mSing2 + vv*yy**2)))/sin2b)/
-     . (4*mSing2 + 2*vv*yy**2))
- 	  write(0,*)"Charged Higgs Mass ",DSQRT(MHC)
+      MHC=(-(vv*(-2*At**2 + 2*mSing2*yy**2 + 
+     -         vv*yy**4)) + 
+     -    (4*(2*At*Tad + 
+     -         f**2*yy**2*(2*mSing2 + vv*yy**2)))/
+     -     sin2b)/(4*mSing2 + 2*vv*yy**2)
+      write(0,*)"Charged Higgs Mass ",DSQRT(MHC)
  
 *   Charged Higgs pole mass (in the LLA only)
 

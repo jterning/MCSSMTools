@@ -271,7 +271,10 @@ Content of the array PROB(I) (phenomenological and theoretical constraints):
      PROB(45) =/= 0  excluded by LHC: A/H -> 2taus
 
 Output parameters:
-
+	
+	The decay and spectrum output files can be visualized using the <a href="http://bit.ly/mcspect">
+	spectrum program</a>.
+	
      SMASS(1-3): CP-even masses (ordered)
 
      SCOMP(1-3,1-3): Mixing angles: if HB(I) are the bare states,

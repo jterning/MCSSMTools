@@ -160,9 +160,10 @@
       At=L * AL
       yy=L
       vv=4 * MZ**2/(g1q+g2q)
+      
  
-      PAR(4)=(Sqrt(2.0)*(-2*Tad + At*Sqrt(CB2)*Sqrt(SB2)*vv)*yy)/
-     .       (2.0*mSing2 + vv*yy**2)
+      PAR(4)=-((DSqrt(2.0D0)*(2*Tad + At*DSQRT(cb2*sb2)*vv)*yy)/
+     -    (2*mSing2 + vv*yy**2))
       MU=PAR(4)
       NU=K/L*MU
 ***************************************************************

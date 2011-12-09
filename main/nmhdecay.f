@@ -643,24 +643,33 @@
       At=PAR(1)*PAR(5)
       yy=PAR(1)
       write(0,*) "yukawa = ",PAR(1)
-      mHu= ((-4*f**2*yy**2)/tanb + c2b*(2*MZ**2 - vv*yy**2) + 
-     -    (8*At*sin2b*Tad*vv*yy**2)/(2*mSing2 + vv*yy**2)**2 - 
-     -    (8*At*Tad)/(tanb*(2*mSing2 + vv*yy**2)) + 
-     -  (2*At**2*cb**2*vv*(4*mSing2 + vv*yy**2 + c2b*vv*yy**2))/
-     -     (2*mSing2 + vv*yy**2)**2 + 
-     -  yy**2*(-vv - (16*Tad**2)/(2*mSing2 + vv*yy**2)**2))/4.0 
+      mHu= (-8*At*sin2b*Tad*vv*yy**2 + 
+     -    2*At**2*cb**2*vv*
+     -     (4*mSing2 + vv*yy**2 + c2b*vv*yy**2) - 
+     -    yy**2*(16*Tad**2 + 
+     -       (2*mSing2*v + v**3*yy**2)**2) + 
+     -    (2*mSing2 + vv*yy**2)*
+     -     ((8*At*Tad)/tanb + 
+     -       (2*mSing2 + vv*yy**2)*
+     -        ((4*f**2*yy**2)/tanb + 
+     -          c2b*(2*MZ**2 - vv*yy**2))))/
+     -  (4.*(2*mSing2 + vv*yy**2)**2) 
       if( mHu .GE. 0 ) then
         write(0,*) "mHu = ",DSQRT(mHu)
       else
         write(0,*) "mHu^2 = ",mHu, DSQRT(DABS(mHu))
       endif
-      mHd= -((-4*Tad + At*sin2b*vv)**2*yy**2 + 
-     -    2*cb**2*MZ**2*(2*mSing2 + vv*yy**2)**2 + 
-     -   tanb*(2*mSing2 + vv*yy**2)*
-     -   (8*At*Tad + 4*f**2*yy**2*(2*mSing2 + vv*yy**2) + 
-     -   sin2b*(-2*At**2*vv - 
-     -   (MZ - v*yy)*(MZ + v*yy)*(2*mSing2 + vv*yy**2))))/
-     -  (4.*(2*mSing2 + vv*yy**2)**2)
+      mHd= (-8*Tad**2*yy**2 - 
+     -    8*At*cb*sb*Tad*vv*yy**2 + 
+     -    cb**2*(-2*At**2*sb**2*v**4*yy**2 - 
+     -       MZ**2*(2*mSing2 + vv*yy**2)**2) + 
+     -    (2*mSing2 + vv*yy**2)*
+     -     (2*tanb*(2*At*Tad + 
+     -          f**2*yy**2*(2*mSing2 + vv*yy**2)) + 
+     -       sb**2*(2*At**2*vv + 
+     -          (MZ - v*yy)*(MZ + v*yy)*
+     -           (2*mSing2 + vv*yy**2))))/
+     -  (2.*(2*mSing2 + vv*yy**2)**2)
       if( mHd .GE. 0 ) then
         write(0,*) "mHd = ",DSQRT(mHd)
       else

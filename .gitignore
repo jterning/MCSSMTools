@@ -34,4 +34,7 @@ micromegas_2.2/sources/micromegas.a
 micromegas_2.2/CalcHEP_src/bin/mkLibshared
 micromegas_2.2/CalcHEP_src/bin/mkLibstat
 micromegas_2.2/CalcHEP_src/c_source/num/include/rootDir.h
+micromegas_2.2/CalcHEP_src/bin/mkLibshared
+micromegas_2.2/CalcHEP_src/bin/mkLibstat
+micromegas_2.2/CalcHEP_src/c_source/num/include/rootDir.h
 sources/nmhdecay.a
