@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>jterning/MCSSMTools @ GitHub</title>
+
+  <style type="text/css">
+    body {
+      margin-top: 1.0em;
+      background-color: #acece8;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+    h1 { font-size: 3.8em; color: #531317; margin-bottom: 3px; }
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; color: #531317; }
+    h3 { text-align: center; color: #531317; }
+    a { color: #531317; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+    pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+  </style>
+</head>
+
+<body>
+  <a href="https://github.com/jterning/MCSSMTools"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+
+  <div id="container">
+
+    <div class="download">
+      <a href="https://github.com/jterning/MCSSMTools/zipball/master">
+        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
+      <a href="https://github.com/jterning/MCSSMTools/tarball/master">
+        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
+    </div>
+
+    <h1><a href="https://github.com/jterning/MCSSMTools">MCSSMTools</a>
+      <span class="small">by <a href="https://github.com/jterning">jterning</a></span></h1>
+
+    <div class="description">
+      Spectrum and decays in the Minimal Composite Supersymmetric Standard Model
+    </div>
+
+    
+      <p>This program calculates the spectrum of the Minimal Composite Supersymmetric Standard Model.
+It was hacked by Csaba Csaki and John Terning, based on the code NMSSMTools by
+Ulrich Ellwanger, John F. Gunion, Cyril Hugonie, C.-C. Jean-Louis, Debottam Das, and Ana M. Teixeira
+for more information on NMSSMTools see
+http://www.th.u-psud.fr/NMHDECAY/nmssmtools.html
+For those familiar with NMSSMTools we have kept the same file names and structure.
+</p>
+    
+
+    
+
+    
+      <h2>Install</h2>
+      <p>On Mac OS X you will need a modern fortran compiler, which can be downloaded 
+from http://hpc.sourceforge.net/ .
+To compile, type first "make init", then "make". A first compilation
+may take a while, since all subroutines of micromegas_2.2 are compiled.
+The following 8 executable routines are created in the directory
+"main": nmhdecay, nmhdecay_rand, nmhdecay_grid, nmspec, nmspec_rand,
+nmspec_grid, nmgmsb and nmgmsb_rand.
+If a subroutine in the directory "sources" was modified, one has to
+type "make init" and "make" again. If a routine in the directory "main"
+was modified, it suffices to type "make" again.
+To delete all the already compiled codes type "make clean".
+
+The decay and spectrum output files can be visualized using the spectrum program, available at http://bit.ly/mcspect.</p>
+    
+
+    
+
+    
+      <h2>Authors</h2>
+      <p>John Terning (jterning@gmail.com) Csaba Csaki (csaki@cornell.edu)<br/>      </p>
+    
+
+    
+      <h2>Contact</h2>
+      <p>John Terning (jterning@gmail.com)<br/>      </p>
+    
+
+    <h2>Download</h2>
+    <p>
+      You can download this project in either
+      <a href="https://github.com/jterning/MCSSMTools/zipball/master">zip</a> or
+      <a href="https://github.com/jterning/MCSSMTools/tarball/master">tar formats.
+    </p>
+    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+      by running:
+      <pre>$ git clone git://github.com/jterning/MCSSMTools</pre>
+    </p>
+
+    <div class="footer">
+      get the source code on GitHub : <a href="https://github.com/jterning/MCSSMTools">jterning/MCSSMTools</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
