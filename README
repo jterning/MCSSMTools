@@ -30,8 +30,9 @@ PREFIXinpSUFFIX where PREFIX and SUFFIX can contain dots etc..
 
 The input file can be located in any directory specified by a PATH.
 
-To run any input file PREFIXinpSUFFIX, type "run PATH/PREFIXinpSUFFIX".
-(PATH is optional; if absent, the input file has to be located in the
+To run any input file PREFIXinpSUFFIX, type "run path/PREFIXinpSUFFIX",
+or "./ run path/PREFIXinpSUFFIX" if the current directory is not in your $PATH
+(path is optional; if absent, the input file has to be located in the
 same directory as the script file "run".)
 
 The output files are located in the directory specified by PATH.
@@ -272,8 +273,8 @@ Content of the array PROB(I) (phenomenological and theoretical constraints):
 
 Output parameters:
 	
-	The decay and spectrum output files can be visualized using the <a href="http://bit.ly/mcspect">
-	spectrum program</a>.
+	The decay and spectrum output files can be visualized using the 
+	spectrum program, available at http://bit.ly/mcspect.
 	
      SMASS(1-3): CP-even masses (ordered)
 

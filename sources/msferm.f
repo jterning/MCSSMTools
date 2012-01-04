@@ -227,6 +227,8 @@
       RMST1= 0.5d0*(mstL+mstR-Wt)
       RMST2= 0.5d0*(mstL+mstR+Wt)
 
+      WRITE(0,*)"Xt"
+      WRITE(0,*)Xt
 
       WRITE(0,*)"Stop masses"
       WRITE(0,*)DSQRT(RMST1),"  ",DSQRT(RMST2)
@@ -237,8 +239,6 @@
     	WRITE(0,*)"MQ3P,MU3P,ATP"
         WRITE(0,*)PAR(7),PAR(8),PAR(12)
 
-    	WRITE(0,*)"MT,Xt,muq"
-        WRITE(0,*)MT,Xt,muq
 
         WRITE(0,*)"Stop mass,mstL,mstR,Wt"
         WRITE(0,*)DSQRT(RMST1),mstL,mstR,Wt
